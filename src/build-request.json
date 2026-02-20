@@ -1,0 +1,234 @@
+{
+  "kind": "build_request",
+  "title": "Build artwork data table with server-side pagination and persistent selection",
+  "projectName": "Artwork Gallery",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Install and configure PrimeReact library with DataTable component support",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "UI Component: PrimeReact DataTable",
+          "Implement using PrimeReact DataTable (link) component"
+        ]
+      },
+      "acceptanceCriteria": [
+        "PrimeReact is installed as a project dependency",
+        "PrimeReact theme CSS is imported in the application",
+        "DataTable component can be imported and used"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Create TypeScript interface for artwork data matching API response structure with fields: id, title, place_of_origin, artist_display, inscriptions, date_start, date_end",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "title",
+          "place_of_origin",
+          "artist_display",
+          "inscriptions",
+          "date_start",
+          "date_end"
+        ]
+      },
+      "acceptanceCriteria": [
+        "TypeScript interface accurately represents artwork data structure",
+        "Interface includes all six required display fields plus id field",
+        "Types are properly defined for each field"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Fetch artwork data from Art Institute of Chicago API endpoint https://api.artic.edu/api/v1/artworks?page=1 on initial page load",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "API Endpoint: https://api.artic.edu/api/v1/artworks?page=1",
+          "Fetch and display data from page 1 on initial load"
+        ]
+      },
+      "acceptanceCriteria": [
+        "API call is made to the correct endpoint on component mount",
+        "Data is fetched using the exact URL https://api.artic.edu/api/v1/artworks?page=1",
+        "Loading states are handled appropriately",
+        "Error states are handled appropriately"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Display artwork data in PrimeReact DataTable with columns for title, place_of_origin, artist_display, inscriptions, date_start, and date_end",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Display all required fields in the table"
+        ]
+      },
+      "acceptanceCriteria": [
+        "DataTable renders all six required fields as separate columns",
+        "Column headers are properly labeled",
+        "Data from API is correctly mapped to table rows",
+        "Table displays current page data only"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement server-side pagination controls that fetch new data from API when user navigates between pages",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Implement pagination controls",
+          "Fetch data from API whenever user changes page",
+          "Must use server-side pagination (fetch data per page, not all at once)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Pagination controls are visible and functional",
+        "Changing pages triggers a new API request with updated page parameter",
+        "Only current page data is fetched (no bulk data fetching)",
+        "Pagination reflects total number of available pages from API"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add checkboxes for row selection supporting individual row selection and select-all for current page only",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Add checkboxes for row selection",
+          "Allow selecting/deselecting individual rows",
+          "Allow selecting/deselecting all rows on current page"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each row has a selectable checkbox",
+        "Individual rows can be selected and deselected",
+        "Select-all checkbox toggles all rows on current page",
+        "Select-all only affects visible rows on current page"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Create custom row selection overlay panel with input field allowing user to select N number of rows through numeric input",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Implement custom row selection panel",
+          "An Overlay panel which allows user to custom select n number of rows through input field"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Overlay panel is accessible from the UI",
+        "Panel contains an input field for entering number of rows to select",
+        "Input accepts numeric values only",
+        "Panel has a submit/apply button to trigger selection"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Implement persistent row selection using ID-based tracking strategy that maintains selection state across page navigation without prefetching or storing data from other pages",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Selected/deselected rows must persist when navigating between pages",
+          "Do not fetch rows from other pages and store the objects or ids in a variable in order to select rows from other pages",
+          "Track selections separately - Store row IDs/keys of selected items, not entire row objects"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Row selections persist when navigating away from and returning to a page",
+        "Selection state is maintained using row IDs only, not full row objects",
+        "No API calls are made to prefetch data from other pages",
+        "No storage of row objects from pages not currently displayed",
+        "Custom selection for N rows works across pages using ID-based strategy without fetching other page data"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Handle custom row selection input where N exceeds current page row count using an ID-based calculation strategy that does not fetch or store data from other pages",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "If user selects rows more than the available rows in the current page through custom Row Selection, then you must not pre fetch next (other) page rows and store them in a variable",
+          "Instead, you must implement a strategy to handle custom row selection and deselection for rows across different page"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When N exceeds current page rows, selection spans across pages without prefetching",
+        "No async loops fetching multiple pages are implemented",
+        "Selection logic calculates which IDs to mark as selected based on page structure and row count",
+        "Implementation avoids the forbidden pattern shown in assignment (no while loop with API calls)",
+        "Only current page data is fetched and displayed at any time"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Apply a clean, professional design style with consistent colors, typography, and spacing suitable for a data-focused artwork gallery application",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Color scheme is professional and enhances readability",
+        "Typography is consistent across all components",
+        "Layout provides clear visual hierarchy",
+        "Design complements the data table as primary focus"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not use async loops or while loops that fetch data from multiple pages to populate selection",
+    "Do not store row objects or data from pages that are not currently displayed",
+    "Selection persistence must be achieved through ID-based tracking only",
+    "Do not fetch data from other pages when handling custom row selection",
+    "Only current page data should be fetched and stored at any given time",
+    "Must use PrimeReact DataTable component (no alternative table libraries)",
+    "API endpoint must be exactly https://api.artic.edu/api/v1/artworks?page=N"
+  ],
+  "nonGoals": [
+    "Client-side pagination (fetching all data at once)",
+    "Storing full row objects for selection tracking",
+    "Prefetching pages in advance for selection purposes",
+    "Using table libraries other than PrimeReact DataTable",
+    "Backend implementation (this is frontend-only)",
+    "Authentication or user accounts",
+    "Editing or modifying artwork data",
+    "Artwork image display",
+    "Search or filtering functionality"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

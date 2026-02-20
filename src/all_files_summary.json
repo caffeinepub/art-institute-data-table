@@ -1,0 +1,22 @@
+{
+  "backend/main.mo": "Empty Motoko actor definition serving as a placeholder backend canister.",
+  "feature_evidence.json": "Feature evidence report documenting implemented features including PrimeReact setup, TypeScript interfaces, API integration, DataTable display, pagination, and row selection with associated files and test IDs.",
+  "frontend-file-summaries.txt": "JSON-formatted summaries of all frontend source files describing components, hooks, utilities, and configuration for the Art Institute data table application.",
+  "frontend/index.css": "Tailwind CSS base styles with OKLCH color system defining CSS custom properties for light and dark themes including background, foreground, primary, secondary, and chart colors.",
+  "frontend/index.html": "HTML entry point with root div and module script reference to main.tsx for the Art Institute Data Table application.",
+  "frontend/src/App.tsx": "Root application component rendering Header, ArtworkTable, and Footer in a full-height flex layout with container styling.",
+  "frontend/src/components/ArtworkTable.tsx": "Main data table component using shadcn/ui Table with server-side pagination, row selection with checkboxes, custom selection panel, and loading/error states for displaying artwork data.",
+  "frontend/src/components/CustomSelectionPanel.tsx": "Popover component with form input allowing users to select a custom number of rows starting from the first row across pages.",
+  "frontend/src/components/Footer.tsx": "Footer component displaying copyright year and caffeine.ai attribution link with UTM tracking parameters.",
+  "frontend/src/components/Header.tsx": "Header component displaying 'Art Institute of Chicago' title and descriptive subtitle with border and padding.",
+  "frontend/src/hooks/useActor.ts": "React Query hook managing ICP actor creation with Internet Identity authentication, handling anonymous and authenticated actors with automatic query invalidation on identity changes.",
+  "frontend/src/hooks/useArtworkData.ts": "Custom hook fetching artwork data from Art Institute of Chicago API for a given page, managing loading, error, and total records state.",
+  "frontend/src/hooks/useInternetIdentity.ts": "React hook and provider for Internet Identity authentication on ICP, managing login state, identity persistence, and AuthClient lifecycle with configurable options.",
+  "frontend/src/hooks/useSelectionPersistence.ts": "Custom React hook managing persistent row selection state with functions for toggling individual/page selections, checking selection status, and handling custom selection counts.",
+  "frontend/src/index.css": "Tailwind CSS configuration with custom CSS variables for light/dark theme colors using OKLCH color space, including design tokens for UI components.",
+  "frontend/src/main.tsx": "Application entry point that sets up React root with QueryClient and InternetIdentityProvider wrappers around the main App component.",
+  "frontend/src/types/artwork.ts": "TypeScript interfaces defining Artwork data structure and API response shape with pagination metadata for Art Institute of Chicago API.",
+  "frontend/src/utils/selectionCalculator.ts": "Utility functions for calculating which artwork IDs should be selected across pages using mathematical position-based approach without fetching data from other pages.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration with custom theme extensions for colors (using OKLCH), typography, animations, and design system tokens matching the CSS variables.",
+  "project_state.json": "Project metadata documenting architecture decisions, requirements, and features for a React/TypeScript data table app with Art Institute API integration and persistent selection."
+}

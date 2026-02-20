@@ -1,0 +1,193 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-install-and-configure-primereact-library-with-datatable-component-support",
+      "featureTitle": "Install and configure PrimeReact library with DataTable component support",
+      "files": [
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-typescript-interface-for-artwork-data-matching-api-response-structure-with-fields-id-title-place-of-origin-artist-display-inscriptions-date-start-date-end",
+      "featureTitle": "Create TypeScript interface for artwork data matching API response structure with fields: id, title, place_of_origin, artist_display, inscriptions, date_start, date_end",
+      "files": [
+        "frontend/src/types/artwork.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fetch-artwork-data-from-art-institute-of-chicago-api-endpoint-https-api-artic-edu-api-v1-artworks-page-1-on-initial-page-load",
+      "featureTitle": "Fetch artwork data from Art Institute of Chicago API endpoint https://api.artic.edu/api/v1/artworks?page=1 on initial page load",
+      "files": [
+        "frontend/src/hooks/useArtworkData.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-display-artwork-data-in-primereact-datatable-with-columns-for-title-place-of-origin-artist-display-inscriptions-date-start-and-date-end",
+      "featureTitle": "Display artwork data in PrimeReact DataTable with columns for title, place_of_origin, artist_display, inscriptions, date_start, and date_end",
+      "files": [
+        "frontend/src/components/ArtworkTable.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-server-side-pagination-controls-that-fetch-new-data-from-api-when-user-navigates-between-pages",
+      "featureTitle": "Implement server-side pagination controls that fetch new data from API when user navigates between pages",
+      "files": [
+        "frontend/src/components/ArtworkTable.tsx",
+        "frontend/src/hooks/useArtworkData.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-checkboxes-for-row-selection-supporting-individual-row-selection-and-select-all-for-current-page-only",
+      "featureTitle": "Add checkboxes for row selection supporting individual row selection and select-all for current page only",
+      "files": [
+        "frontend/src/components/ArtworkTable.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-custom-row-selection-overlay-panel-with-input-field-allowing-user-to-select-n-number-of-rows-through-numeric-input",
+      "featureTitle": "Create custom row selection overlay panel with input field allowing user to select N number of rows through numeric input",
+      "files": [
+        "frontend/src/components/ArtworkTable.tsx",
+        "frontend/src/components/CustomSelectionPanel.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-persistent-row-selection-using-id-based-tracking-strategy-that-maintains-selection-state-across-page-navigation-without-prefetching-or-storing-data-from-other-pages",
+      "featureTitle": "Implement persistent row selection using ID-based tracking strategy that maintains selection state across page navigation without prefetching or storing data from other pages",
+      "files": [
+        "frontend/src/components/ArtworkTable.tsx",
+        "frontend/src/hooks/useSelectionPersistence.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-handle-custom-row-selection-input-where-n-exceeds-current-page-row-count-using-an-id-based-calculation-strategy-that-does-not-fetch-or-store-data-from-other-pages",
+      "featureTitle": "Handle custom row selection input where N exceeds current page row count using an ID-based calculation strategy that does not fetch or store data from other pages",
+      "files": [
+        "frontend/src/components/ArtworkTable.tsx",
+        "frontend/src/hooks/useSelectionPersistence.ts",
+        "frontend/src/utils/selectionCalculator.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-clean-professional-design-style-with-consistent-colors-typography-and-spacing-suitable-for-a-data-focused-artwork-gallery-application",
+      "featureTitle": "Apply a clean, professional design style with consistent colors, typography, and spacing suitable for a data-focused artwork gallery application",
+      "files": [
+        "frontend/src/components/ArtworkTable.tsx",
+        "frontend/src/components/CustomSelectionPanel.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

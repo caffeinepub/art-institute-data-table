@@ -1,0 +1,150 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "React TypeScript data table app with Art Institute of Chicago API integration, featuring PrimeReact DataTable with server-side pagination and persistent row selection across pages",
+  "architectural_notes": [
+    "Must use Vite (not CRA) with TypeScript (not JavaScript)",
+    "Use PrimeReact DataTable for table UI",
+    "API: https://api.artic.edu/api/v1/artworks?page=N",
+    "Server-side pagination: fetch only current page data",
+    "Persistent selection: track row IDs/keys only, not full objects",
+    "Custom selection: calculate across pages mathematically without prefetching",
+    "CRITICAL: Never prefetch other pages or store their data in variables for selection",
+    "Deploy to Netlify/Cloudflare (NOT Vercel)"
+  ],
+  "known_issues": [
+    "Avoid async loops fetching multiple pages for custom selection (auto-rejection)",
+    "Do not store row objects from other pages in state",
+    "Custom selection must use ID-based strategy, not data fetching"
+  ],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-install-and-configure-primereact-library-with-datatable-component-support",
+      "title": "Install and configure PrimeReact library with DataTable component support",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-typescript-interface-for-artwork-data-matching-api-response-structure-with-fields-id-title-place-of-origin-artist-display-inscriptions-date-start-date-end",
+      "title": "Create TypeScript interface for artwork data matching API response structure with fields: id, title, place_of_origin, artist_display, inscriptions, date_start, date_end",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fetch-artwork-data-from-art-institute-of-chicago-api-endpoint-https-api-artic-edu-api-v1-artworks-page-1-on-initial-page-load",
+      "title": "Fetch artwork data from Art Institute of Chicago API endpoint https://api.artic.edu/api/v1/artworks?page=1 on initial page load",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-artwork-data-in-primereact-datatable-with-columns-for-title-place-of-origin-artist-display-inscriptions-date-start-and-date-end",
+      "title": "Display artwork data in PrimeReact DataTable with columns for title, place_of_origin, artist_display, inscriptions, date_start, and date_end",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-server-side-pagination-controls-that-fetch-new-data-from-api-when-user-navigates-between-pages",
+      "title": "Implement server-side pagination controls that fetch new data from API when user navigates between pages",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-checkboxes-for-row-selection-supporting-individual-row-selection-and-select-all-for-current-page-only",
+      "title": "Add checkboxes for row selection supporting individual row selection and select-all for current page only",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-custom-row-selection-overlay-panel-with-input-field-allowing-user-to-select-n-number-of-rows-through-numeric-input",
+      "title": "Create custom row selection overlay panel with input field allowing user to select N number of rows through numeric input",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-persistent-row-selection-using-id-based-tracking-strategy-that-maintains-selection-state-across-page-navigation-without-prefetching-or-storing-data-from-other-pages",
+      "title": "Implement persistent row selection using ID-based tracking strategy that maintains selection state across page navigation without prefetching or storing data from other pages",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-handle-custom-row-selection-input-where-n-exceeds-current-page-row-count-using-an-id-based-calculation-strategy-that-does-not-fetch-or-store-data-from-other-pages",
+      "title": "Handle custom row selection input where N exceeds current page row count using an ID-based calculation strategy that does not fetch or store data from other pages",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-clean-professional-design-style-with-consistent-colors-typography-and-spacing-suitable-for-a-data-focused-artwork-gallery-application",
+      "title": "Apply a clean, professional design style with consistent colors, typography, and spacing suitable for a data-focused artwork gallery application",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Set up Vite + React + TypeScript project",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Integrate PrimeReact DataTable component",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Fetch and display artwork data from Art Institute API (title, place_of_origin, artist_display, inscriptions, date_start, date_end)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Implement server-side pagination (fetch per page, not all at once)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Add row selection with checkboxes (individual and select-all for current page)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Create custom row selection overlay panel with input field for selecting N rows",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Implement persistent row selection across page navigation without prefetching or storing other pages' data",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Art Institute Data Table",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

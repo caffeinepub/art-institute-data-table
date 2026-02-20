@@ -1,0 +1,78 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-20T09:33:57.909Z",
+  "summary": "The implementation uses shadcn/ui Table components instead of PrimeReact DataTable as required. While the core functionality (server-side pagination, ID-based selection persistence, custom selection panel) appears implemented, the use of the wrong component library is a critical deviation from the specification.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Install and configure PrimeReact library with DataTable component support",
+      "reason": "The diff shows no evidence of PrimeReact installation or usage. The ArtworkTable.tsx imports shadcn/ui Table components instead of PrimeReact DataTable. The package.json mentions PrimeReact in the summary but the actual implementation uses shadcn/ui.",
+      "evidence": [
+        "frontend/src/components/ArtworkTable.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Display artwork data in PrimeReact DataTable with columns for title, place_of_origin, artist_display, inscriptions, date_start, and date_end",
+      "reason": "Implementation uses shadcn/ui Table component instead of PrimeReact DataTable. While the correct columns are displayed, the component library requirement is not met.",
+      "evidence": [
+        "frontend/src/components/ArtworkTable.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "shadcn/ui Table component implementation",
+      "reason": "The implementation uses shadcn/ui components (Table, TableBody, TableCell, TableHead, TableHeader, TableRow) which were not requested. The BuildRequest explicitly requires PrimeReact DataTable and specifies no alternative table libraries in non-goals.",
+      "evidence": [
+        "frontend/src/components/ArtworkTable.tsx"
+      ]
+    },
+    {
+      "description": "Internet Identity authentication infrastructure",
+      "reason": "The diff includes useInternetIdentity.ts and useActor.ts hooks implementing Internet Computer authentication. This was not requested in any requirement and authentication is explicitly listed as a non-goal.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "Backend Motoko actor file",
+      "reason": "An empty backend/main.mo file was created. The BuildRequest explicitly states this is frontend-only with backend implementation as a non-goal.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Rows per page selector",
+      "reason": "ArtworkTable.tsx includes a Select component for changing rows per page (rowsPerPage state and handleRowsPerPageChange). This functionality was not requested in any requirement.",
+      "evidence": [
+        "frontend/src/components/ArtworkTable.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.95,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/ArtworkTable.tsx",
+    "frontend/src/components/CustomSelectionPanel.tsx",
+    "frontend/src/components/Footer.tsx",
+    "frontend/src/components/Header.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useArtworkData.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useSelectionPersistence.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/types/artwork.ts",
+    "frontend/src/utils/selectionCalculator.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

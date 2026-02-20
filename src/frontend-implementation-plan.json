@@ -1,0 +1,222 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Build artwork data table with server-side pagination and persistent selection",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Install and configure PrimeReact library with DataTable component support",
+      "acceptanceCriteria": [
+        "PrimeReact is installed as a project dependency",
+        "PrimeReact theme CSS is imported in the application",
+        "DataTable component can be imported and used"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/package.json",
+          "operation": "modify",
+          "description": "Add PrimeReact and PrimeIcons as dependencies to support DataTable component functionality"
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Import PrimeReact core CSS and theme CSS to enable component styling across the application"
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Create TypeScript interface for artwork data matching API response structure",
+      "acceptanceCriteria": [
+        "TypeScript interface accurately represents artwork data structure",
+        "Interface includes all six required display fields plus id field",
+        "Types are properly defined for each field"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/types/artwork.ts",
+          "operation": "create",
+          "description": "Define Artwork interface with fields: id (number), title (string), place_of_origin (string), artist_display (string), inscriptions (string), date_start (number), date_end (number). Define ArtworkApiResponse interface to represent the API response structure including data array and pagination metadata"
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Fetch artwork data from Art Institute of Chicago API on initial page load",
+      "acceptanceCriteria": [
+        "API call is made to the correct endpoint on component mount",
+        "Data is fetched using the exact URL https://api.artic.edu/api/v1/artworks?page=1",
+        "Loading states are handled appropriately",
+        "Error states are handled appropriately"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useArtworkData.ts",
+          "operation": "create",
+          "description": "Create custom hook to fetch artwork data from https://api.artic.edu/api/v1/artworks?page=N. Manage loading, error, and data states. Accept page number as parameter and return artwork array, pagination metadata, loading state, and error state"
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Display artwork data in PrimeReact DataTable with required columns",
+      "acceptanceCriteria": [
+        "DataTable renders all six required fields as separate columns",
+        "Column headers are properly labeled",
+        "Data from API is correctly mapped to table rows",
+        "Table displays current page data only"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ArtworkTable.tsx",
+          "operation": "create",
+          "description": "Create ArtworkTable component using PrimeReact DataTable. Define six Column components for title, place_of_origin, artist_display, inscriptions, date_start, and date_end with appropriate headers and field mappings. Use the useArtworkData hook to fetch and display current page data. Handle loading and error states with appropriate UI feedback"
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement server-side pagination controls that fetch new data from API",
+      "acceptanceCriteria": [
+        "Pagination controls are visible and functional",
+        "Changing pages triggers a new API request with updated page parameter",
+        "Only current page data is fetched (no bulk data fetching)",
+        "Pagination reflects total number of available pages from API"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ArtworkTable.tsx",
+          "operation": "modify",
+          "description": "Enable DataTable lazy pagination mode. Configure paginator prop with rows per page and total records from API response. Add onPage event handler that updates current page state and triggers new API call via useArtworkData hook. Display page controls at bottom of table"
+        },
+        {
+          "path": "frontend/src/hooks/useArtworkData.ts",
+          "operation": "modify",
+          "description": "Update hook to accept page parameter and refetch data when page changes. Ensure only current page data is fetched and stored"
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add checkboxes for row selection supporting individual and select-all for current page",
+      "acceptanceCriteria": [
+        "Each row has a selectable checkbox",
+        "Individual rows can be selected and deselected",
+        "Select-all checkbox toggles all rows on current page",
+        "Select-all only affects visible rows on current page"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ArtworkTable.tsx",
+          "operation": "modify",
+          "description": "Enable DataTable selection mode with checkbox selection. Add selection state to track selected rows. Configure selectionMode='multiple' and dataKey='id'. Add Column with selectionMode='multiple' for checkboxes. Implement onSelectionChange handler to update selection state for current page rows only"
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Create custom row selection overlay panel with numeric input field",
+      "acceptanceCriteria": [
+        "Overlay panel is accessible from the UI",
+        "Panel contains an input field for entering number of rows to select",
+        "Input accepts numeric values only",
+        "Panel has a submit/apply button to trigger selection"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/CustomSelectionPanel.tsx",
+          "operation": "create",
+          "description": "Create CustomSelectionPanel component using PrimeReact OverlayPanel. Include numeric input field for row count entry with validation. Add submit button to apply selection. Accept onSubmit callback prop that receives the entered number. Provide toggle button or icon to show/hide the overlay panel"
+        },
+        {
+          "path": "frontend/src/components/ArtworkTable.tsx",
+          "operation": "modify",
+          "description": "Integrate CustomSelectionPanel component above the DataTable. Wire the panel's onSubmit callback to trigger custom selection logic using the entered number of rows"
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement persistent row selection using ID-based tracking across page navigation",
+      "acceptanceCriteria": [
+        "Row selections persist when navigating away from and returning to a page",
+        "Selection state is maintained using row IDs only, not full row objects",
+        "No API calls are made to prefetch data from other pages",
+        "No storage of row objects from pages not currently displayed",
+        "Custom selection for N rows works across pages using ID-based strategy without fetching other page data"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useSelectionPersistence.ts",
+          "operation": "create",
+          "description": "Create custom hook to manage persistent selection state using a Set of artwork IDs. Provide methods to add/remove IDs, check if ID is selected, and get all selected IDs. Store only IDs, never full row objects. Maintain selection state across page changes without fetching data from other pages"
+        },
+        {
+          "path": "frontend/src/components/ArtworkTable.tsx",
+          "operation": "modify",
+          "description": "Integrate useSelectionPersistence hook to manage selection across pages. When page changes, sync current page rows with persistent ID set to determine which rows should appear selected. Update DataTable selection prop based on ID matching. When user selects/deselects rows, update the persistent ID set accordingly"
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Handle custom row selection input where N exceeds current page row count using ID-based calculation",
+      "acceptanceCriteria": [
+        "When N exceeds current page rows, selection spans across pages without prefetching",
+        "No async loops fetching multiple pages are implemented",
+        "Selection logic calculates which IDs to mark as selected based on page structure and row count",
+        "Implementation avoids the forbidden pattern shown in assignment (no while loop with API calls)",
+        "Only current page data is fetched and displayed at any time"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/selectionCalculator.ts",
+          "operation": "create",
+          "description": "Create utility function to calculate which artwork IDs should be selected given: starting page, rows per page, total number to select (N), and current page number. Use mathematical calculation to determine ID ranges across pages without fetching data. Return Set of IDs that should be marked as selected"
+        },
+        {
+          "path": "frontend/src/components/ArtworkTable.tsx",
+          "operation": "modify",
+          "description": "Integrate selectionCalculator utility when custom selection is triggered. Pass current page, rows per page, and N to calculator. Update persistent selection state with calculated ID set. Apply selections to currently visible rows without fetching other pages. Show user feedback indicating selection spans multiple pages if applicable"
+        },
+        {
+          "path": "frontend/src/hooks/useSelectionPersistence.ts",
+          "operation": "modify",
+          "description": "Add method to bulk update selection state with calculated ID set from selectionCalculator. Support efficient ID set operations for large selections without storing row objects"
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Apply clean, professional design style with consistent colors, typography, and spacing",
+      "acceptanceCriteria": [
+        "Color scheme is professional and enhances readability",
+        "Typography is consistent across all components",
+        "Layout provides clear visual hierarchy",
+        "Design complements the data table as primary focus"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define CSS custom properties for consistent color palette focusing on neutral tones with accent colors for interactive elements. Set typography scale with appropriate font families, sizes, and line heights. Add spacing utilities and ensure PrimeReact theme complements overall design"
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with custom colors matching the design system defined in index.css. Configure spacing scale and typography settings to ensure consistency across the application"
+        },
+        {
+          "path": "frontend/src/components/ArtworkTable.tsx",
+          "operation": "modify",
+          "description": "Apply consistent styling to ArtworkTable component using Tailwind utility classes and custom CSS classes. Ensure proper spacing, readable typography, and clear visual hierarchy with the data table as focal point. Style loading and error states appropriately"
+        },
+        {
+          "path": "frontend/src/components/CustomSelectionPanel.tsx",
+          "operation": "modify",
+          "description": "Style CustomSelectionPanel with professional appearance matching overall design system. Ensure input field, button, and overlay panel have consistent typography, colors, and spacing"
+        }
+      ]
+    }
+  ]
+}

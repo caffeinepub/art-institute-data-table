@@ -1,2 +1,3 @@
-# art-institute-data-table
-Exported from Caffeine project: Art Institute Data Table
+## Art Institute Data Table
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

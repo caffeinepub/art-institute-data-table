@@ -1,0 +1,14 @@
+{
+  "frontend/src/App.tsx": "Main application component that renders the header, artwork table, and footer in a full-height flex layout.",
+  "frontend/src/components/Header.tsx": "Header component displaying the Art Institute of Chicago title and description.",
+  "frontend/src/components/Footer.tsx": "Footer component with copyright notice and caffeine.ai attribution with UTM tracking.",
+  "frontend/src/components/ArtworkTable.tsx": "Main data table component using shadcn/ui Table components with server-side pagination, row selection with checkboxes, and persistent selection across pages using ID-based tracking.",
+  "frontend/src/components/CustomSelectionPanel.tsx": "Popover panel component with numeric input field for custom row selection, allowing users to select N rows across pages.",
+  "frontend/src/types/artwork.ts": "TypeScript interfaces for Artwork data structure and API response matching the Art Institute of Chicago API format.",
+  "frontend/src/hooks/useArtworkData.ts": "Custom hook that fetches artwork data from the Art Institute API for a specific page, managing loading, error, and data states.",
+  "frontend/src/hooks/useSelectionPersistence.ts": "Custom hook managing persistent row selection state using a Set of artwork IDs, providing methods for selection, deselection, and custom bulk selection without storing row objects.",
+  "frontend/src/utils/selectionCalculator.ts": "Utility functions that calculate which artwork IDs should be selected based on count and pagination structure using mathematical position-based approach without fetching data from other pages.",
+  "frontend/src/index.css": "Global styles with OKLCH color system for light/dark modes and Inter font family for clean typography.",
+  "frontend/tailwind.config.js": "Tailwind configuration with extended color palette using OKLCH values, Inter font family, and custom design tokens.",
+  "frontend/package.json": "Package configuration with PrimeReact and PrimeIcons dependencies added for DataTable functionality."
+}
